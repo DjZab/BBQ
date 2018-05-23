@@ -1,3 +1,68 @@
+local food = {
+	{"bbq:bacon", "Bacon", "bbq_bacon.png", 7},
+	{"bbq:bacon_cheeseburger", "Bacon Cheeseburger", "bbq_bacon_cheeseburger.png", 9},
+	{"bbq:bacon_raw", "Bacon Raw", "bbq_bacon_raw.png", 3},
+	{"bbq:bbq_beef_ribs", "BBQ Ribs", "bbq_beef_ribs.png", 9},
+	{"bbq:bbq_beef_ribs_raw", "BBQ Ribs Raw", "bbq_beef_ribs_raw.png", 4},
+	{"bbq:bbq_chicken", "BBQ Chicken", "bbq_bbq_chicken.png", 8},
+	{"bbq:bbq_chicken_raw", "BBQ Chicken Raw", "bbq_bbq_chicken_raw.png", 4},
+	{"bbq:beef", "Beef", "bbq_beef_cooked.png", 8},
+	{"bbq:beef_jerky", "Beef Jerky", "bbq_beef_jerky.png", 5},
+	{"bbq:beef_jerky_raw", "Beef Jerky Raw", "bbq_beef_jerky_raw.png", 2},
+	{"bbq:beef_raw", "Raw Beef", "bbq_beef_raw.png", 3},
+	{"bbq:brisket", "BBQ Brisket", "bbq_brisket.png", 9},
+	{"bbq:brisket_raw", "BBQ Brisket Raw", "bbq_brisket_raw.png", 4},
+	{"bbq:cheese_steak", "Cheese Steak", "bbq_cheese_steak.png", 8},
+	{"bbq:corned_beef", "Corned Beef", "bbq_corned_beef.png", 10},
+	{"bbq:corned_beef_raw", "Corned Beef Raw", "bbq_corned_beef_raw.png", 5},
+	{"bbq:grilled_corn", "Grilled Corn", "bbq_grilled_corn.png", 8},
+	{"bbq:grilled_corn_raw", "Grilled Corn Raw", "bbq_grilled_corn_raw.png", 5},
+	{"bbq:grilled_pizza", "Grilled Pizza", "bbq_grilled_pizza.png", 8},
+	{"bbq:grilled_pizza_raw", "Grilled Pizza Raw", "bbq_grilled_pizza_raw.png", 5},
+	{"bbq:grilled_tomato", "Grilled Tomato", "bbq_grilled_tomato.png", 5},
+	{"bbq:ham", "Ham", "bbq_ham.png", 9},
+	{"bbq:ham_raw", "Ham Raw", "bbq_ham_raw.png", 4},
+	{"bbq:hamburger", "Hamburger", "bbq_hamburger.png", 9},
+	{"bbq:hamburger_patty", "Hamburger Patty", "bbq_hamburger_patty.png", 8},
+	{"bbq:hamburger_patty_raw", "Hamburger Patty Raw", "bbq_hamburger_patty_raw.png", 3},
+	{"bbq:hot_wings", "Hot Wings", "bbq_hot_wings.png", 8},
+	{"bbq:hot_wings_raw", "Hot Wings Raw", "bbq_hot_wings_raw.png", 3},
+	{"bbq:hotdog", "Hot Dog", "bbq_hotdog.png", 8},
+	{"bbq:hotdog_cooked", "Hotdog Cooked", "bbq_hotdog_cooked.png", 7},
+	{"bbq:hotdog_raw", "Pulled Pork", "bbq_pulled_pork.png", 8},
+	{"bbq:lamb_kebab", "Lamb Kebab", "bbq_lamb_kebab.png", 4},
+	{"bbq:lamb_kebab_raw", "Lamb Kebab Raw", "bbq_lamb_kebab_raw.png", 2},
+	{"bbq:leg_lamb", "Leg of Lamb", "bbq_leg_lamb.png", 9},
+	{"bbq:leg_lamb_raw", "Leg of Lamb Raw", "bbq_leg_lamb_raw.png", 4},
+	{"bbq:london_broil", "London Broil", "bbq_london_broil.png", 7},
+	{"bbq:london_broil_raw", "London Broil Raw", "bbq_london_broil_raw.png", 3},
+	{"bbq:pepper_steak", "Pepper Steak", "bbq_pepper_steak.png", 10},
+	{"bbq:pepper_steak_raw", "Pepper Steak Raw", "bbq_pepper_steak_raw.png", 4},
+	{"bbq:portebello_steak", "Portebello Steak", "bbq_portebello_steak.png", 9},
+	{"bbq:portebello_steak_raw", "Portebello Steak Raw", "bbq_portebello_steak_raw.png", 5},
+	{"bbq:rack_lamb", "Rack of Lamb", "bbq_rack_lamb.png", 10},
+	{"bbq:rack_lamb_raw", "Rack of Lamb Raw", "bbq_rack_lamb_raw.png", 5},
+	{"bbq:smoked_pepper", "Smoked Pepper", "bbq_smoked_pepper.png", 5},
+	{"bbq:stuffed_chop", "Stuffed Chop", "bbq_stuffed_chop.png", 8},
+	{"bbq:stuffed_chop_raw", "Stuffed Chop Raw", "bbq_stuffed_chop_raw.png", 3},
+	{"bbq:stuffed_mushroom", "Stuffed Mushroom", "bbq_stuffed_mushroom.png", 9},
+	{"bbq:stuffed_mushroom_raw", "Stuffed Mushroom Raw", "bbq_stuffed_mushroom_raw.png", 5},
+	{"bbq:stuffed_pepper", "Stuffed Pepper", "bbq_stuffed_pepper.png", 9},
+	{"bbq:stuffed_pepper_raw", "Stuffed Pepper Raw", "bbq_stuffed_pepper_raw.png", 4},
+	{"bbq:veggie_kebab", "Veggie Kebab", "bbq_veggie_kebab.png", 8},
+	{"bbq:veggie_kebab_raw", "Veggie Kebab Raw", "bbq_veggie_kebab_raw.png", 4},
+	{"bbq:veggie_packet", "Veggie Packet", "bbq_veggie_packet.png", 5},
+	{"bbq:veggie_packet_raw", "Veggie Packet Raw", "bbq_veggie_packet_raw.png", 4}
+}
+
+for _,name in pairs(food) do
+	minetest.register_craftitem(food[_][1], {
+		description = (food[_][2]),
+		inventory_image = food[_][3],
+		on_use = minetest.item_eat(food[_][4]),
+	})
+end
+
 -- Kettle Grill
 minetest.register_node("bbq:kettle_grill", {
 	description = ("Kettle Grill"),
@@ -199,383 +264,12 @@ minetest.register_node("bbq:vinegar_mother", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
--- Veggie Kebab
-minetest.register_craftitem("bbq:veggie_kebab", {
-	description = ("Veggie Kebab"),
-	inventory_image = "bbq_veggie_kebab.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Veggie Kebab Raw
-minetest.register_craftitem("bbq:veggie_kebab_raw", {
-	description = ("Veggie Kebab Raw"),
-	inventory_image = "bbq_veggie_kebab_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Veggie Packet
-minetest.register_craftitem("bbq:veggie_packet", {
-	description = ("Veggie Packet"),
-	inventory_image = "bbq_veggie_packet.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Veggie Packet Raw
-minetest.register_craftitem("bbq:veggie_packet_raw", {
-	description = ("Veggie Packet Raw"),
-	inventory_image = "bbq_veggie_packet_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Stuffed Mushroom
-minetest.register_craftitem("bbq:stuffed_mushroom", {
-	description = ("Stuffed Mushroom"),
-	inventory_image = "bbq_stuffed_mushroom.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Stuffed Mushroom Raw
-minetest.register_craftitem("bbq:stuffed_mushroom_raw", {
-	description = ("Stuffed Mushroom Raw"),
-	inventory_image = "bbq_stuffed_mushroom_raw.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Portebello Steak_Raw
-minetest.register_craftitem("bbq:portebello_steak_raw", {
-	description = ("Portebello Steak Raw"),
-	inventory_image = "bbq_portebello_steak_raw.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Portebello Steak
-minetest.register_craftitem("bbq:portebello_steak", {
-	description = ("Portebello Steak"),
-	inventory_image = "bbq_portebello_steak.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Lamb Kebab
-minetest.register_craftitem("bbq:lamb_kebab", {
-	description = ("Lamb Kebab"),
-	inventory_image = "bbq_lamb_kebab.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Lamb Kebab Raw
-minetest.register_craftitem("bbq:lamb_kebab_raw", {
-	description = ("Lamb Kebab Raw"),
-	inventory_image = "bbq_lamb_kebab_raw.png",
-	on_use = minetest.item_eat(2),
-})
-
--- Rack of Lamb
-minetest.register_craftitem("bbq:rack_lamb", {
-	description = ("Rack of Lamb"),
-	inventory_image = "bbq_rack_lamb.png",
-	on_use = minetest.item_eat(10),
-})
-
--- Rack of Lamb Raw
-minetest.register_craftitem("bbq:rack_lamb_raw", {
-	description = ("Rack of Lamb Raw"),
-	inventory_image = "bbq_rack_lamb_raw.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Leg of Lamb
-minetest.register_craftitem("bbq:leg_lamb", {
-	description = ("Leg of Lamb"),
-	inventory_image = "bbq_leg_lamb.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Leg of Lamb Raw
-minetest.register_craftitem("bbq:leg_lamb_raw", {
-	description = ("Leg of Lamb Raw"),
-	inventory_image = "bbq_leg_lamb_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Ham
-minetest.register_craftitem("bbq:ham", {
-	description = ("Ham"),
-	inventory_image = "bbq_ham.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Ham Raw
-minetest.register_craftitem("bbq:ham_raw", {
-	description = ("Ham Raw"),
-	inventory_image = "bbq_ham_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- BBQ Chicken
-minetest.register_craftitem("bbq:bbq_chicken", {
-	description = ("BBQ Chicken"),
-	inventory_image = "bbq_bbq_chicken.png",
-	on_use = minetest.item_eat(8),
-})
-
--- BBQ Chicken Raw
-minetest.register_craftitem("bbq:bbq_chicken_raw", {
-	description = ("BBQ Chicken Raw"),
-	inventory_image = "bbq_bbq_chicken_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Corned Beef Raw
-minetest.register_craftitem("bbq:corned_beef_raw", {
-	description = ("Corned Beef Raw"),
-	inventory_image = "bbq_corned_beef_raw.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Corned Beef
-minetest.register_craftitem("bbq:corned_beef", {
-	description = ("Corned Beef"),
-	inventory_image = "bbq_corned_beef.png",
-	on_use = minetest.item_eat(10),
-})
-
--- BBQ Brisket
-minetest.register_craftitem("bbq:brisket", {
-	description = ("BBQ Brisket"),
-	inventory_image = "bbq_brisket.png",
-	on_use = minetest.item_eat(9),
-})
-
--- BBQ Brisket Raw
-minetest.register_craftitem("bbq:brisket_raw", {
-	description = ("BBQ Brisket Raw"),
-	inventory_image = "bbq_brisket_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- BBQ Beef Ribs
-minetest.register_craftitem("bbq:bbq_beef_ribs", {
-	description = ("BBQ Ribs"),
-	inventory_image = "bbq_beef_ribs.png",
-	on_use = minetest.item_eat(9),
-})
-
--- BBQ Beef Ribs Raw
-minetest.register_craftitem("bbq:bbq_beef_ribs_raw", {
-	description = ("BBQ Ribs Raw"),
-	inventory_image = "bbq_beef_ribs_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Hot Wings Raw
-minetest.register_craftitem("bbq:hot_wings_raw", {
-	description = ("Hot Wings Raw"),
-	inventory_image = "bbq_hot_wings_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- Hot Wings
-minetest.register_craftitem("bbq:hot_wings", {
-	description = ("Hot Wings"),
-	inventory_image = "bbq_hot_wings.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Bacon Cheeseburger
-minetest.register_craftitem("bbq:bacon_cheeseburger", {
-	description = ("Bacon Cheeseburger"),
-	inventory_image = "bbq_bacon_cheeseburger.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Cheese Steak
-minetest.register_craftitem("bbq:cheese_steak", {
-	description = ("Cheese Steak"),
-	inventory_image = "bbq_cheese_steak.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Hamburger
-minetest.register_craftitem("bbq:hamburger", {
-	description = ("Hamburger"),
-	inventory_image = "bbq_hamburger.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Hamburger Patty
-minetest.register_craftitem("bbq:hamburger_patty", {
-	description = ("Hamburger Patty"),
-	inventory_image = "bbq_hamburger_patty.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Hamburger Patty Raw
-minetest.register_craftitem("bbq:hamburger_patty_raw", {
-	description = ("Hamburger Patty Raw"),
-	inventory_image = "bbq_hamburger_patty_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- Hot Dog
-minetest.register_craftitem("bbq:hotdog", {
-	description = ("Hot Dog"),
-	inventory_image = "bbq_hotdog.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Hotdog Raw
-minetest.register_craftitem("bbq:hotdog_cooked", {
-	description = ("Hotdog Cooked"),
-	inventory_image = "bbq_hotdog_cooked.png",
-	on_use = minetest.item_eat(7),
-})
-
--- Hotdog Raw
-minetest.register_craftitem("bbq:hotdog_raw", {
-	description = ("Hotdog Raw"),
-	inventory_image = "bbq_hotdog_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- Pulled Pork
-minetest.register_craftitem("bbq:pulled_pork", {
-	description = ("Pulled Pork"),
-	inventory_image = "bbq_pulled_pork.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Grilled Pizza Raw
-minetest.register_craftitem("bbq:grilled_pizza_raw", {
-	description = ("Grilled Pizza Raw"),
-	inventory_image = "bbq_grilled_pizza_raw.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Grilled Pizza
-minetest.register_craftitem("bbq:grilled_pizza", {
-	description = ("Grilled Pizza"),
-	inventory_image = "bbq_grilled_pizza.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Raw Beef Jerky
-minetest.register_craftitem("bbq:beef_jerky_raw", {
-	description = ("Beef Jerky Raw"),
-	inventory_image = "bbq_beef_jerky_raw.png",
-	on_use = minetest.item_eat(2),
-})
-
--- Beef Jerky
-minetest.register_craftitem("bbq:beef_jerky", {
-	description = ("Beef Jerky"),
-	inventory_image = "bbq_beef_jerky.png",
-	on_use = minetest.item_eat(5),
-})
-
--- Raw Pepper Steak
-minetest.register_craftitem("bbq:pepper_steak_raw", {
-	description = ("Pepper Steak Raw"),
-	inventory_image = "bbq_pepper_steak_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
--- Pepper Steak
-minetest.register_craftitem("bbq:pepper_steak", {
-	description = ("Pepper Steak"),
-	inventory_image = "bbq_pepper_steak.png",
-	on_use = minetest.item_eat(10),
-})
-
--- Raw Bacon
-minetest.register_craftitem("bbq:bacon_raw", {
-	description = ("Bacon Raw"),
-	inventory_image = "bbq_bacon_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- Bacon
-minetest.register_craftitem("bbq:bacon", {
-	description = ("Bacon"),
-	inventory_image = "bbq_bacon.png",
-	on_use = minetest.item_eat(7),
-})
-
--- London Broil Raw
-minetest.register_craftitem("bbq:london_broil_raw", {
-	description = ("London Broil Raw"),
-	inventory_image = "bbq_london_broil_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- London Broil
-minetest.register_craftitem("bbq:london_broil", {
-	description = ("London Broil"),
-	inventory_image = "bbq_london_broil.png",
-	on_use = minetest.item_eat(7),
-})
-
--- Stuffed Chop Raw
-minetest.register_craftitem("bbq:stuffed_chop_raw", {
-	description = ("Stuffed Chop Raw"),
-	inventory_image = "bbq_stuffed_chop_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- Stuffed Chop
-minetest.register_craftitem("bbq:stuffed_chop", {
-	description = ("Stuffed Chop"),
-	inventory_image = "bbq_stuffed_chop.png",
-	on_use = minetest.item_eat(8),
-})
-
--- Stuffed Pepper
-minetest.register_craftitem("bbq:stuffed_pepper", {
-	description = ("Stuffed Pepper"),
-	inventory_image = "bbq_stuffed_pepper.png",
-	on_use = minetest.item_eat(9),
-})
-
--- Stuffed Pepper Raw
-minetest.register_craftitem("bbq:stuffed_pepper_raw", {
-	description = ("Stuffed Pepper Raw"),
-	inventory_image = "bbq_stuffed_pepper_raw.png",
-	on_use = minetest.item_eat(4),
-})
-
---Smoked Pepper
-minetest.register_craftitem("bbq:smoked_pepper", {
-	description = ("Smoked Pepper"),
-	inventory_image = "bbq_smoked_pepper.png",
-	on_use = minetest.item_eat(5),
-})
-
 --Tomato Sauce
 minetest.register_craftitem("bbq:tomato_sauce", {
 	description = ("Tomato Sauce"),
 	inventory_image = "bbq_tomato_sauce.png",
 	groups = { food_tomato_sauce=1, vessel=1 },
 	on_use = minetest.item_eat(2)
-})
-
---Grilled Tomato
-minetest.register_craftitem("bbq:grilled_tomato", {
-	description = ("Grilled Tomato"),
-	inventory_image = "bbq_grilled_tomato.png",
-	on_use = minetest.item_eat(5),
-})
-
---Grilled Corn
-minetest.register_craftitem("bbq:grilled_corn", {
-	description = ("Grilled Corn"),
-	inventory_image = "bbq_grilled_corn.png",
-	on_use = minetest.item_eat(8),
-})
-
---Grilled Corn Raw
-minetest.register_craftitem("bbq:grilled_corn_raw", {
-	description = ("Grilled Corn Raw"),
-	inventory_image = "bbq_grilled_corn_raw.png",
-	on_use = minetest.item_eat(5),
 })
 
 --Paprika
@@ -767,24 +461,6 @@ minetest.register_node("bbq:yeast", {
 	tiles = {"bbq_yeast.png"},
 	groups = {food_vinegarmother=1, vessel = 1, dig_immediate = 3, attached_node = 1},
 	sounds = default.node_sound_glass_defaults(),
-})
-
--------------------
---Animal Drop Meats
--------------------
-
--- Raw Beef
-minetest.register_craftitem("bbq:beef_raw", {
-	description = ("Raw Beef"),
-	inventory_image = "bbq_beef_raw.png",
-	on_use = minetest.item_eat(3),
-})
-
--- Cooked Beef
-minetest.register_craftitem("bbq:beef", {
-	description = ("Beef"),
-	inventory_image = "bbq_beef_cooked.png",
-	on_use = minetest.item_eat(8),
 })
 
 ------------
