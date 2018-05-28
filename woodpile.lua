@@ -32,288 +32,77 @@ local function get_bbq_woodpile_formspec(inv)
 	return formspec
 end
 
-minetest.register_node("bbq:woodpile", {
-	description = "Wood Pile",
-	tiles = {"bbq_woodpile_wood_top.png", "bbq_woodpile_wood_top.png", "bbq_woodpile_wood_side.png",
-		"bbq_woodpile_wood_side.png", "bbq_woodpile_wood_front.png", "bbq_woodpile_wood_front.png"},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
-	sounds = default.node_sound_wood_defaults(),
+local woodtype = {
+	{"woodpile", "", "wood"},
+	{"woodpile_acacia", "Acacia", "acacia_wood"},
+	{"woodpile_pine", "Pine", "pine_wood"},
+	{"woodpile_junglewood", "Junglewood", "junglewood"},
+	{"woodpile_aspen", "Aspen", "aspen_wood"}
+}
 
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(nil))
-		local inv = meta:get_inventory()
-		inv:set_size("bbq", 8 * 2)
-	end,
-	can_dig = function(pos,player)
-		local inv = minetest.get_meta(pos):get_inventory()
-		return inv:is_empty("bbq")
-	end,
-
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff in bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff to bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " takes stuff from bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_blast = function(pos)
-		local drops = {}
-		default.get_inventory_drops(pos, "bbq", drops)
-		drops[#drops + 1] = "bbq:woodpile"
-		minetest.remove_node(pos)
-		return drops
-	end,
-})
-
-minetest.register_node("bbq:woodpile_acacia", {
-	description = "Acacia Wood Pile",
-	tiles = {"bbq_woodpile_acacia_top.png", "bbq_woodpile_acacia_top.png", "bbq_woodpile_acacia_side.png",
-		"bbq_woodpile_acacia_side.png", "bbq_woodpile_acacia_front.png", "bbq_woodpile_acacia_front.png"},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
-	sounds = default.node_sound_wood_defaults(),
-
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(nil))
-		local inv = meta:get_inventory()
-		inv:set_size("bbq", 8 * 2)
-	end,
-	can_dig = function(pos,player)
-		local inv = minetest.get_meta(pos):get_inventory()
-		return inv:is_empty("bbq")
-	end,
-
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff in bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff to bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " takes stuff from bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_blast = function(pos)
-		local drops = {}
-		default.get_inventory_drops(pos, "bbq", drops)
-		drops[#drops + 1] = "bbq:woodpile"
-		minetest.remove_node(pos)
-		return drops
-	end,
-})
-
-minetest.register_node("bbq:woodpile_pine", {
-	description = "Pine Wood Pile",
-	tiles = {"bbq_woodpile_pine_top.png", "bbq_woodpile_pine_top.png", "bbq_woodpile_pine_side.png",
-		"bbq_woodpile_pine_side.png", "bbq_woodpile_pine_front.png", "bbq_woodpile_pine_front.png"},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
-	sounds = default.node_sound_wood_defaults(),
-
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(nil))
-		local inv = meta:get_inventory()
-		inv:set_size("bbq", 8 * 2)
-	end,
-	can_dig = function(pos,player)
-		local inv = minetest.get_meta(pos):get_inventory()
-		return inv:is_empty("bbq")
-	end,
-
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff in bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff to bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " takes stuff from bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_blast = function(pos)
-		local drops = {}
-		default.get_inventory_drops(pos, "bbq", drops)
-		drops[#drops + 1] = "bbq:woodpile"
-		minetest.remove_node(pos)
-		return drops
-	end,
-})
-
-minetest.register_node("bbq:woodpile_junglewood", {
-	description = "Junglewood Wood Pile",
-	tiles = {"bbq_woodpile_junglewood_top.png", "bbq_woodpile_junglewood_top.png", "bbq_woodpile_junglewood_side.png",
-		"bbq_woodpile_junglewood_side.png", "bbq_woodpile_junglewood_front.png", "bbq_woodpile_junglewood_front.png"},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
-	sounds = default.node_sound_wood_defaults(),
-
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(nil))
-		local inv = meta:get_inventory()
-		inv:set_size("bbq", 8 * 2)
-	end,
-	can_dig = function(pos,player)
-		local inv = minetest.get_meta(pos):get_inventory()
-		return inv:is_empty("bbq")
-	end,
-
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff in bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff to bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " takes stuff from bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_blast = function(pos)
-		local drops = {}
-		default.get_inventory_drops(pos, "bbq", drops)
-		drops[#drops + 1] = "bbq:woodpile"
-		minetest.remove_node(pos)
-		return drops
-	end,
-})
-
-minetest.register_node("bbq:woodpile_aspen", {
-	description = "Aspen Wood Pile",
-	tiles = {"bbq_woodpile_aspen_top.png", "bbq_woodpile_aspen_top.png", "bbq_woodpile_aspen_side.png",
-		"bbq_woodpile_aspen_side.png", "bbq_woodpile_aspen_front.png", "bbq_woodpile_aspen_front.png"},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
-	sounds = default.node_sound_wood_defaults(),
-
-	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(nil))
-		local inv = meta:get_inventory()
-		inv:set_size("bbq", 8 * 2)
-	end,
-	can_dig = function(pos,player)
-		local inv = minetest.get_meta(pos):get_inventory()
-		return inv:is_empty("bbq")
-	end,
-
-	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff in bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " moves stuff to bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", player:get_player_name() ..
-			   " takes stuff from bbq woodpile at ".. minetest.pos_to_string(pos))
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
-	end,
-	on_blast = function(pos)
-		local drops = {}
-		default.get_inventory_drops(pos, "bbq", drops)
-		drops[#drops + 1] = "bbq:woodpile"
-		minetest.remove_node(pos)
-		return drops
-	end,
-})
-
-
-minetest.register_craft({
-	output = "bbq:woodpile",
-	recipe = {
-		{"default:wood", "default:wood", "default:wood"},
-		{"default:wood", "default:wood", "default:wood"},
-		{"default:wood", "default:wood", "default:wood"},
-	}
-})
-
-minetest.register_craft({
-	output = "bbq:woodpile_pine",
-	recipe = {
-		{"default:pine_wood", "default:pine_wood", "default:pine_wood"},
-		{"default:pine_wood", "default:pine_wood", "default:pine_wood"},
-		{"default:pine_wood", "default:pine_wood", "default:pine_wood"},
-	}
-})
-
-minetest.register_craft({
-	output = "bbq:woodpile_aspen",
-	recipe = {
-		{"default:aspen_wood", "default:aspen_wood", "default:aspen_wood"},
-		{"default:aspen_wood", "default:aspen_wood", "default:aspen_wood"},
-		{"default:aspen_wood", "default:aspen_wood", "default:aspen_wood"},
-	}
-})
-
-minetest.register_craft({
-	output = "bbq:woodpile_junglewood",
-	recipe = {
-		{"default:junglewood", "default:junglewood", "default:junglewood"},
-		{"default:junglewood", "default:junglewood", "default:junglewood"},
-		{"default:junglewood", "default:junglewood", "default:junglewood"},
-	}
-})
-
-minetest.register_craft({
-	output = "bbq:woodpile_acacia",
-	recipe = {
-		{"default:acacia_wood", "default:acacia_wood", "default:acacia_wood"},
-		{"default:acacia_wood", "default:acacia_wood", "default:acacia_wood"},
-		{"default:acacia_wood", "default:acacia_wood", "default:acacia_wood"},
-	}
-})
+--[[
+Die png's von "Wood" umbennen. Gegebenenfalls aliase einrichten
+]]
+for i,v in ipairs(woodtype) do
+	mod = "bbq"
+	nodename = mod..":"..i[1]
+	tile = mod.."_"..i[1]
+	desc = i[2].." Woodpile"
+	craftitem = "default:"..i[3]
+	
+	minetest.register_node(nodename, {
+		description = desc,
+		tiles = {tile.."_top.png", tile.."_top.png", tile.."_side.png",
+			tile.."_side.png", tile.."_front.png", tile.."_front.png"},
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3},
+		sounds = default.node_sound_wood_defaults(),
+			
+		on_construct = function(pos)
+			local meta = minetest.get_meta(pos)
+			meta:set_string("formspec", get_bbq_woodpile_formspec(nil))
+			local inv = meta:get_inventory()
+			inv:set_size("bbq", 8 * 2)
+		end,
+		can_dig = function(pos,player)
+			local inv = minetest.get_meta(pos):get_inventory()
+			return inv:is_empty("bbq")
+		end,
+		on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+			minetest.log("action", player:get_player_name()..
+				" moves stuff in BBQ wood pile at ".. minetest.pos_to_string(pos))
+			local meta = minetest.get_meta(pos)
+			meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
+		end,
+		on_metadata_inventory_put = function(pos, listname, index, stack, player)
+			minetest.log("action", player:get_player_name() ..
+				   " moves stuff to bbq woodpile at ".. minetest.pos_to_string(pos))
+			local meta = minetest.get_meta(pos)
+			meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
+		end,
+		on_metadata_inventory_take = function(pos, listname, index, stack, player)
+			minetest.log("action", player:get_player_name() ..
+				   " takes stuff from bbq woodpile at ".. minetest.pos_to_string(pos))
+			local meta = minetest.get_meta(pos)
+			meta:set_string("formspec", get_bbq_woodpile_formspec(meta:get_inventory()))
+		end,
+		on_blast = function(pos)
+			local drops = {}
+			default.get_inventory_drops(pos, "bbq", drops)
+			drops[#drops + 1] = "bbq:woodpile"
+			minetest.remove_node(pos)
+			return drops
+		end,						
+	})
+	
+	minetest.register_craft({
+		output = nodename,
+		recipe = {
+			{craftitem, craftitem, craftitem},
+			{craftitem, craftitem, craftitem},
+			{craftitem, craftitem, craftitem},
+		}
+	})
+end
